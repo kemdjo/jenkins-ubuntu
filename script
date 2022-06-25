@@ -1,16 +1,45 @@
 #!/bin/bash
+# This  script is to install jenkins on any ubuntu or debian server
+#
+# Installing curl
 apt install curl -y
+
+# Importing the jenins dirctories as ubuntu or debian does not come with those packages
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+# upgarding the system
 apt upgrade -y
+
+# Updating the system
 apt update -y
+
+# Installing Java 11
 apt install openjdk-11-jdk -y
+
+# installing net tools if it is not installed yet.
 apt install net-tools -y
+
+# Re-updating the system
 apt update -y
+
+# Installing jenkins
 apt install jenkins -y
+
+# Cheking jenkins status
 service jenkins status
+
+#starting jenkins status
 service jenkins start
+
+#  Cheking jenkins status
 service jenkins status
+
+# Installing ufw
 apt install ufw -y
+
+#allowing port 8080
 ufw allow 8080
+
+# enabling ufw
 ufw enbable
